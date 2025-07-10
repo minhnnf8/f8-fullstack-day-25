@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabs - F8 Zoom Day 25</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .tabs-container {
+            margin-bottom: 30px;
+        }
+        .tab-buttons {
+            display: flex;
+            border-bottom: 2px solid #ecf0f1;
+            margin-bottom: 20px;
+        }
+        .tab-button {
+            background: none;
+            border: none;
+            padding: 15px 20px;
+            cursor: pointer;
+            font-size: 16px;
+            color: #7f8c8d;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s;
+            flex: 1;
+        }
+        .tab-button:hover {
+            color: #3498db;
+            background: #f8f9fa;
+        }
+        .tab-button.active {
+            color: #3498db;
+            border-bottom-color: #3498db;
+            font-weight: bold;
+        }
+        .tab-content {
+            display: none;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            min-height: 200px;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        .tab-content h3 {
+            color: #2c3e50;
+            margin-top: 0;
+        }
+        .instruction {
+            background: #e8f4f8;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border-left: 4px solid #3498db;
+        }
+        .back-btn {
+            background: #95a5a6;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            display: inline-block;
+            margin-top: 20px;
+        }
+        .back-btn:hover {
+            background: #7f8c8d;
+        }
+        
+        /* Tabs thứ 2 */
+        .tabs-container-2 {
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 2px solid #ecf0f1;
+        }
+        .tabs-container-2 h2 {
+            color: #e74c3c;
+            margin-bottom: 20px;
+        }
+        .tabs-container-2 .tab-button.active {
+            color: #e74c3c;
+            border-bottom-color: #e74c3c;
+        }
+        .tabs-container-2 .tab-button:hover {
+            color: #e74c3c;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Chức năng Tab</h1>
+        
+        <div class="instruction">
+            <strong>Hướng dẫn sử dụng:</strong><br>
+            - Click vào tab để chuyển đổi<br>
+            - Nhấn phím số (1, 2, 3, 4, 5) để chuyển đổi tab tương ứng<br>
+            - Mỗi nhóm tab hoạt động độc lập
+        </div>
+        
+        <!-- Tabs nhóm 1 -->
+        <div class="tabs-container" data-tabs="group1">
+            <h2>Nhóm Tab 1 (Mặc định active tab 1)</h2>
+            <div class="tab-buttons">
+                <button class="tab-button active" data-tab="tab1">Tab 1</button>
+                <button class="tab-button" data-tab="tab2">Tab 2</button>
+                <button class="tab-button" data-tab="tab3">Tab 3</button>
+                <button class="tab-button" data-tab="tab4">Tab 4</button>
+            </div>
+            <div class="tab-content active" data-content="tab1">
+                <h3>Nội dung Tab 1</h3>
+                <p>Đây là nội dung của tab đầu tiên. Tab này được active mặc định khi trang được tải.</p>
+                <p>Bạn có thể nhấn phím số <strong>1</strong> để chuyển về tab này.</p>
+                <ul>
+                    <li>Thông tin quan trọng 1</li>
+                    <li>Thông tin quan trọng 2</li>
+                    <li>Thông tin quan trọng 3</li>
+                </ul>
+            </div>
+            <div class="tab-content" data-content="tab2">
+                <h3>Nội dung Tab 2</h3>
+                <p>Chào mừng bạn đến với tab thứ hai! Đây là một ví dụ về cách nội dung thay đổi khi chuyển tab.</p>
+                <p>Nhấn phím số <strong>2</strong> để chuyển đến tab này.</p>
+                <p>Tab này chứa thông tin về các tính năng nâng cao của hệ thống.</p>
+            </div>
+            <div class="tab-content" data-content="tab3">
+                <h3>Nội dung Tab 3</h3>
+                <p>Tab số 3 chứa thông tin về cài đặt và cấu hình hệ thống.</p>
+                <p>Sử dụng phím số <strong>3</strong> để truy cập nhanh.</p>
+                <div style="background: #f39c12; color: white; padding: 10px; border-radius: 5px;">
+                    <strong>Lưu ý:</strong> Đây là tab có thông tin cảnh báo quan trọng.
+                </div>
+            </div>
+            <div class="tab-content" data-content="tab4">
+                <h3>Nội dung Tab 4</h3>
+                <p>Tab cuối cùng chứa thông tin liên hệ và hỗ trợ.</p>
+                <p>Nhấn phím số <strong>4</strong> để đến tab này.</p>
+                <p>Nếu bạn cần hỗ trợ, hãy liên hệ với chúng tôi qua email: support@f8.edu.vn</p>
+            </div>
+        </div>
+        
+        <!-- Tabs nhóm 2 -->
+        <div class="tabs-container tabs-container-2" data-tabs="group2">
+            <h2>Nhóm Tab 2 (Mặc định active tab 2)</h2>
+            <div class="tab-buttons">
+                <button class="tab-button" data-tab="tab5">Tab 5</button>
+                <button class="tab-button active" data-tab="tab6">Tab 6</button>
+                <button class="tab-button" data-tab="tab7">Tab 7</button>
+                <button class="tab-button" data-tab="tab8">Tab 8</button>
+                <button class="tab-button" data-tab="tab9">Tab 9</button>
+            </div>
+            <div class="tab-content" data-content="tab5">
+                <h3>Nội dung Tab 5</h3>
+                <p>Tab 5 của nhóm thứ 2. Nhấn phím số <strong>5</strong> để chuyển đến đây.</p>
+                <p>Đây là ví dụ về việc có nhiều nhóm tab độc lập trên cùng một trang.</p>
+            </div>
+            <div class="tab-content active" data-content="tab6">
+                <h3>Nội dung Tab 6 (Mặc định active)</h3>
+                <p>Tab này được active mặc định trong nhóm 2. Nhấn phím số <strong>6</strong> để chuyển đến.</p>
+                <p>Lưu ý rằng việc chuyển tab trong nhóm này không ảnh hưởng đến nhóm tab trên.</p>
+            </div>
+            <div class="tab-content" data-content="tab7">
+                <h3>Nội dung Tab 7</h3>
+                <p>Tab 7 - Nhấn phím số <strong>7</strong> để truy cập.</p>
+                <p>Mỗi tab có thể chứa nội dung hoàn toàn khác nhau.</p>
+            </div>
+            <div class="tab-content" data-content="tab8">
+                <h3>Nội dung Tab 8</h3>
+                <p>Tab 8 - Sử dụng phím số <strong>8</strong>.</p>
+                <p>Chức năng tab hoạt động mượt mà và đáp ứng nhanh.</p>
+            </div>
+            <div class="tab-content" data-content="tab9">
+                <h3>Nội dung Tab 9</h3>
+                <p>Tab cuối cùng trong nhóm 2. Nhấn phím số <strong>9</strong>.</p>
+                <p>Hệ thống tab có thể mở rộng để hỗ trợ nhiều tab hơn nữa.</p>
+            </div>
+        </div>
+        
+        <a href="index.html" class="back-btn">← Quay lại</a>
+    </div>
+
+    <script>
+        // Hàm Tab có thể tái sử dụng
+        function TabHandler(containerSelector) {
+            const containers = document.querySelectorAll(containerSelector);
+            
+            containers.forEach(container => {
+                const tabButtons = container.querySelectorAll('.tab-button');
+                const tabContents = container.querySelectorAll('.tab-content');
+                
+                // Hàm chuyển tab
+                function switchTab(targetTab) {
+                    // Bỏ active khỏi tất cả buttons và contents
+                    tabButtons.forEach(btn => btn.classList.remove('active'));
+                    tabContents.forEach(content => content.classList.remove('active'));
+                    
+                    // Thêm active vào tab được chọn
+                    const activeButton = container.querySelector(`[data-tab="${targetTab}"]`);
+                    const activeContent = container.querySelector(`[data-content="${targetTab}"]`);
+                    
+                    if (activeButton && activeContent) {
+                        activeButton.classList.add('active');
+                        activeContent.classList.add('active');
+                    }
+                }
+                
+                // Xử lý click vào tab button
+                tabButtons.forEach(button => {
+                    button.addEventListener('click', function() {
+                        const targetTab = this.getAttribute('data-tab');
+                        switchTab(targetTab);
+                    });
+                });
+                
+                // Lưu thông tin tab cho xử lý keyboard
+                container.tabsInfo = {
+                    switchTab: switchTab,
+                    tabButtons: tabButtons
+                };
+            });
+        }
+        
+        // Xử lý phím keyboard
+        function handleKeyboard() {
+            document.addEventListener('keydown', function(e) {
+                const keyNumber = parseInt(e.key);
+                if (keyNumber >= 1 && keyNumber <= 9) {
+                    const tabName = `tab${keyNumber}`;
+                    
+                    // Tìm container chứa tab này
+                    const containers = document.querySelectorAll('[data-tabs]');
+                    containers.forEach(container => {
+                        const targetButton = container.querySelector(`[data-tab="${tabName}"]`);
+                        if (targetButton && container.tabsInfo) {
+                            container.tabsInfo.switchTab(tabName);
+                        }
+                    });
+                }
+            });
+        }
+        
+        // Khởi tạo tabs
+        TabHandler('[data-tabs]');
+        handleKeyboard();
+    </script>
+</body>
+</html>

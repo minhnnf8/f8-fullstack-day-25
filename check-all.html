@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Check All - F8 Zoom Day 25</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .check-all-section {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #e8f4f8;
+            border-radius: 8px;
+        }
+        .check-all-row {
+            display: flex;
+            align-items: center;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        .item-list {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .item-row {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+            transition: background 0.2s;
+        }
+        .item-row:last-child {
+            border-bottom: none;
+        }
+        .item-row:hover {
+            background: #f8f9fa;
+        }
+        .item-row.selected {
+            background: #e8f5e8;
+        }
+        input[type="checkbox"] {
+            margin-right: 12px;
+            transform: scale(1.2);
+        }
+        .counter {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 18px;
+            color: #3498db;
+            font-weight: bold;
+        }
+        .back-btn {
+            background: #95a5a6;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            display: inline-block;
+            margin-top: 20px;
+        }
+        .back-btn:hover {
+            background: #7f8c8d;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Chức năng Check All</h1>
+        
+        <div class="check-all-section">
+            <div class="check-all-row">
+                <input type="checkbox" id="checkAll">
+                <label for="checkAll">Chọn tất cả</label>
+            </div>
+        </div>
+        
+        <div class="item-list">
+            <div class="item-row">
+                <input type="checkbox" class="item-checkbox" id="item1">
+                <label for="item1">Sản phẩm 1 - Điện thoại iPhone 15</label>
+            </div>
+            <div class="item-row">
+                <input type="checkbox" class="item-checkbox" id="item2">
+                <label for="item2">Sản phẩm 2 - Laptop MacBook Pro</label>
+            </div>
+            <div class="item-row">
+                <input type="checkbox" class="item-checkbox" id="item3">
+                <label for="item3">Sản phẩm 3 - Tai nghe AirPods</label>
+            </div>
+            <div class="item-row">
+                <input type="checkbox" class="item-checkbox" id="item4">
+                <label for="item4">Sản phẩm 4 - Đồng hồ Apple Watch</label>
+            </div>
+            <div class="item-row">
+                <input type="checkbox" class="item-checkbox" id="item5">
+                <label for="item5">Sản phẩm 5 - iPad Pro</label>
+            </div>
+            <div class="item-row">
+                <input type="checkbox" class="item-checkbox" id="item6">
+                <label for="item6">Sản phẩm 6 - Chuột Magic Mouse</label>
+            </div>
+            <div class="item-row">
+                <input type="checkbox" class="item-checkbox" id="item7">
+                <label for="item7">Sản phẩm 7 - Bàn phím Magic Keyboard</label>
+            </div>
+            <div class="item-row">
+                <input type="checkbox" class="item-checkbox" id="item8">
+                <label for="item8">Sản phẩm 8 - Màn hình Studio Display</label>
+            </div>
+            <div class="item-row">
+                <input type="checkbox" class="item-checkbox" id="item9">
+                <label for="item9">Sản phẩm 9 - Mac Mini</label>
+            </div>
+            <div class="item-row">
+                <input type="checkbox" class="item-checkbox" id="item10">
+                <label for="item10">Sản phẩm 10 - Apple TV</label>
+            </div>
+        </div>
+        
+        <div class="counter">
+            Đã chọn: <span id="selectedCount">0</span> / 10 sản phẩm
+        </div>
+        
+        <a href="index.html" class="back-btn">← Quay lại</a>
+    </div>
+
+    <script>
+        // Hàm Check All có thể tái sử dụng
+        function CheckAllHandler(checkAllSelector, itemCheckboxSelector) {
+            const checkAllElement = document.querySelector(checkAllSelector);
+            const itemCheckboxes = document.querySelectorAll(itemCheckboxSelector);
+            const selectedCountElement = document.getElementById('selectedCount');
+            
+            // Cập nhật trạng thái check all
+            function updateCheckAllState() {
+                const checkedCount = document.querySelectorAll(itemCheckboxSelector + ':checked').length;
+                const totalCount = itemCheckboxes.length;
+                
+                if (checkedCount === 0) {
+                    checkAllElement.checked = false;
+                    checkAllElement.indeterminate = false;
+                } else if (checkedCount === totalCount) {
+                    checkAllElement.checked = true;
+                    checkAllElement.indeterminate = false;
+                } else {
+                    checkAllElement.checked = false;
+                    checkAllElement.indeterminate = true;
+                }
+                
+                // Cập nhật counter
+                if (selectedCountElement) {
+                    selectedCountElement.textContent = checkedCount;
+                }
+                
+                // Cập nhật style cho các row được chọn
+                itemCheckboxes.forEach(checkbox => {
+                    const row = checkbox.closest('.item-row');
+                    if (row) {
+                        if (checkbox.checked) {
+                            row.classList.add('selected');
+                        } else {
+                            row.classList.remove('selected');
+                        }
+                    }
+                });
+            }
+            
+            // Xử lý click vào check all
+            checkAllElement.addEventListener('change', function() {
+                const isChecked = this.checked;
+                itemCheckboxes.forEach(checkbox => {
+                    checkbox.checked = isChecked;
+                });
+                updateCheckAllState();
+            });
+            
+            // Xử lý click vào từng checkbox
+            itemCheckboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', updateCheckAllState);
+            });
+            
+            // Khởi tạo trạng thái ban đầu
+            updateCheckAllState();
+        }
+        
+        // Khởi tạo chức năng Check All
+        CheckAllHandler('#checkAll', '.item-checkbox');
+    </script>
+</body>
+</html>
